@@ -79,9 +79,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\Data.csproj">
-      <Project>{c8cfa0ba-1547-47f5-8851-57e6aaf648ab}</Project>
-      <Name>Data</Name>
+    <ProjectReference Include="..\Logic\Logic.csproj">
+      <Project>{cb139190-b5d5-4a33-bc6f-f794a95c2904}</Project>
+      <Name>Logic</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

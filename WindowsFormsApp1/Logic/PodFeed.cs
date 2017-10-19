@@ -59,8 +59,8 @@ namespace Logic
                 var url = synkDokument.SelectSingleNode("channel/url").InnerText;
                 int uppdatering;
                 DateTime senastSynkad;
-                DateTime.TryParse(synkDokument.SelectSingleNode("channel/senastSynkad").InnerText, out senastSynkad);
-                int.TryParse(synkDokument.SelectSingleNode("channel/uppdatering").InnerText, out uppdatering);
+                DateTime.TryParse(synkDokument.SelectSingleNode("channel/lastSync").InnerText, out senastSynkad);
+                int.TryParse(synkDokument.SelectSingleNode("channel/interval").InnerText, out uppdatering);
                 if (senastSynkad.AddMilliseconds(uppdatering).CompareTo(DateTime.Now) < 0)
                 {
                     lyssnat.kollaOmLyssnat(namn, kategori);
@@ -107,11 +107,11 @@ namespace Logic
 
                 if (beskrivning.InnerText.Equals(""))
                 {
-                    xmlSkrivare.WriteElementString("beskrivning", "Tyvärr finns ingen beskrivning för podcasten.");
+                    xmlSkrivare.WriteElementString("description", "Tyvärr finns ingen beskrivning för podcasten.");
                 }
                 else
                 {
-                    xmlSkrivare.WriteElementString("beskrivning", beskrivning.InnerText);
+                    xmlSkrivare.WriteElementString("description", beskrivning.InnerText);
 
                 }
 
@@ -120,6 +120,24 @@ namespace Logic
                 xmlSkrivare.WriteElementString("status", "Unlistened");
                 xmlSkrivare.WriteEndElement();
                 i++;
+            }
+        }
+
+        public void hamtaOmAvsnitt(string kategori, string namn, string valtAvsnitt, TextBox textBox)
+        {
+            string path = Directory.GetCurrentDirectory() + @"\" + kategori + @"\" + namn + @".xml";
+
+            XmlDocument xdcDocument = new XmlDocument();
+            xdcDocument.Load(path);
+
+            foreach (XmlNode xndNode in xdcDocument.DocumentElement.SelectNodes("item"))
+            {
+                var titel = xndNode.SelectSingleNode("title");
+                if (valtAvsnitt.Equals(titel.InnerText))
+                {
+                    var omAvsnitt = xndNode.SelectSingleNode("description");
+                    textBox.Text = omAvsnitt.InnerText;
+                }
             }
         }
 
@@ -191,7 +209,7 @@ namespace Logic
             File.Move(väg1, väg2);
         }
 
-        public void ändraNamnKat(String kategori, String nyKat, String namn, ComboBox kombo)
+        public void ändraPodKat(String kategori, String nyKat, String namn, ComboBox kombo)
         {
             String väg1 = Directory.GetCurrentDirectory() + @"\" + kategori + @"\" + namn + @".xml";
             String väg2 = Directory.GetCurrentDirectory() + @"\" + nyKat + @"\" + namn + @".xml";

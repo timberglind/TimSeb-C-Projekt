@@ -35,9 +35,9 @@ namespace Data
 
             xmlSkrivare.WriteStartDocument();
             xmlSkrivare.WriteStartElement("channel");
-            xmlSkrivare.WriteElementString("uppdatering", uppdatering);
+            xmlSkrivare.WriteElementString("interval", uppdatering);
             xmlSkrivare.WriteElementString("url", url);
-            xmlSkrivare.WriteElementString("senastUppdatering", DateTime.Now.ToString());
+            xmlSkrivare.WriteElementString("lastSync", DateTime.Now.ToString());
             foreach (XmlNode item in dokument.DocumentElement.SelectNodes("channel/item"))
                 {
                 var titel = item.SelectSingleNode("title");
@@ -45,15 +45,15 @@ namespace Data
                 var stäng = item.SelectSingleNode("enclosure/@url");
 
                 xmlSkrivare.WriteStartElement("item");
-                xmlSkrivare.WriteAttributeString("ID", "podcast" + i);
+                xmlSkrivare.WriteAttributeString("ID", "pod" + i);
 
                 if (beskrivning.InnerText.Equals(""))
                 {
-                    xmlSkrivare.WriteElementString("beskrivning", "Tyvärr finns ingen beskrivning för podcasten.");
+                    xmlSkrivare.WriteElementString("description", "Tyvärr finns ingen beskrivning för podcasten.");
                 }
                 else
                 {
-                    xmlSkrivare.WriteElementString("beskrivning", beskrivning.InnerText);
+                    xmlSkrivare.WriteElementString("description", beskrivning.InnerText);
 
                 }
 

@@ -45,7 +45,6 @@
             this.lbPodcast = new System.Windows.Forms.ListBox();
             this.lblPodcast = new System.Windows.Forms.Label();
             this.lblAvsnitt = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.lblOm = new System.Windows.Forms.Label();
             this.btnÄndraPodKategori = new System.Windows.Forms.Button();
             this.btnÄndraPodURL = new System.Windows.Forms.Button();
@@ -55,6 +54,7 @@
             this.btnTabortPod = new System.Windows.Forms.Button();
             this.btnSpelaPod = new System.Windows.Forms.Button();
             this.clbAvsnitt = new System.Windows.Forms.CheckedListBox();
+            this.tbOm = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtURL
@@ -149,6 +149,7 @@
             this.btnLäggTillPod.TabIndex = 10;
             this.btnLäggTillPod.Text = "Lägg till Podcast";
             this.btnLäggTillPod.UseVisualStyleBackColor = true;
+            this.btnLäggTillPod.Click += new System.EventHandler(this.btnLäggTillPod_Click);
             // 
             // btnLäggTillKategori
             // 
@@ -158,6 +159,7 @@
             this.btnLäggTillKategori.TabIndex = 11;
             this.btnLäggTillKategori.Text = "Lägg till Kategori";
             this.btnLäggTillKategori.UseVisualStyleBackColor = true;
+            this.btnLäggTillKategori.Click += new System.EventHandler(this.btnLäggTillKategori_Click_1);
             // 
             // lbKategori
             // 
@@ -166,6 +168,7 @@
             this.lbKategori.Name = "lbKategori";
             this.lbKategori.Size = new System.Drawing.Size(165, 394);
             this.lbKategori.TabIndex = 12;
+            this.lbKategori.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lbKategori_MouseClick);
             // 
             // lblKategorier
             // 
@@ -184,6 +187,7 @@
             this.lbPodcast.Name = "lbPodcast";
             this.lbPodcast.Size = new System.Drawing.Size(165, 394);
             this.lbPodcast.TabIndex = 14;
+            this.lbPodcast.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lbPodcast_MouseClick);
             // 
             // lblPodcast
             // 
@@ -204,14 +208,6 @@
             this.lblAvsnitt.Size = new System.Drawing.Size(97, 31);
             this.lblAvsnitt.TabIndex = 17;
             this.lblAvsnitt.Text = "Avsnitt";
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(646, 465);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(465, 134);
-            this.richTextBox1.TabIndex = 18;
-            this.richTextBox1.Text = "";
             // 
             // lblOm
             // 
@@ -258,6 +254,7 @@
             this.btnÄndraKategori.TabIndex = 23;
             this.btnÄndraKategori.Text = "Ändra Namn på Kategori";
             this.btnÄndraKategori.UseVisualStyleBackColor = true;
+            this.btnÄndraKategori.Click += new System.EventHandler(this.btnÄndraKategori_Click);
             // 
             // btnTabortKategori
             // 
@@ -267,7 +264,7 @@
             this.btnTabortKategori.TabIndex = 24;
             this.btnTabortKategori.Text = "Ta bort Kategori och allt innehåll";
             this.btnTabortKategori.UseVisualStyleBackColor = true;
-            this.btnTabortKategori.Click += new System.EventHandler(this.button2_Click);
+            this.btnTabortKategori.Click += new System.EventHandler(this.btnTabortKategori_Click);
             // 
             // btnTabortPod
             // 
@@ -277,6 +274,7 @@
             this.btnTabortPod.TabIndex = 25;
             this.btnTabortPod.Text = "Ta bort Podcast";
             this.btnTabortPod.UseVisualStyleBackColor = true;
+            this.btnTabortPod.Click += new System.EventHandler(this.btnTabortPod_Click);
             // 
             // btnSpelaPod
             // 
@@ -294,12 +292,22 @@
             this.clbAvsnitt.Name = "clbAvsnitt";
             this.clbAvsnitt.Size = new System.Drawing.Size(465, 394);
             this.clbAvsnitt.TabIndex = 27;
+            this.clbAvsnitt.MouseClick += new System.Windows.Forms.MouseEventHandler(this.clbAvsnitt_MouseClick);
+            // 
+            // tbOm
+            // 
+            this.tbOm.Location = new System.Drawing.Point(646, 465);
+            this.tbOm.Multiline = true;
+            this.tbOm.Name = "tbOm";
+            this.tbOm.Size = new System.Drawing.Size(465, 134);
+            this.tbOm.TabIndex = 28;
             // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1123, 611);
+            this.Controls.Add(this.tbOm);
             this.Controls.Add(this.clbAvsnitt);
             this.Controls.Add(this.btnSpelaPod);
             this.Controls.Add(this.btnTabortPod);
@@ -309,7 +317,6 @@
             this.Controls.Add(this.btnÄndraPodURL);
             this.Controls.Add(this.btnÄndraPodKategori);
             this.Controls.Add(this.lblOm);
-            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.lblAvsnitt);
             this.Controls.Add(this.lblPodcast);
             this.Controls.Add(this.lbPodcast);
@@ -354,7 +361,6 @@
         private System.Windows.Forms.ListBox lbPodcast;
         private System.Windows.Forms.Label lblPodcast;
         private System.Windows.Forms.Label lblAvsnitt;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label lblOm;
         private System.Windows.Forms.Button btnÄndraPodKategori;
         private System.Windows.Forms.Button btnÄndraPodURL;
@@ -364,6 +370,7 @@
         private System.Windows.Forms.Button btnTabortPod;
         private System.Windows.Forms.Button btnSpelaPod;
         private System.Windows.Forms.CheckedListBox clbAvsnitt;
+        private System.Windows.Forms.TextBox tbOm;
     }
 }
 
