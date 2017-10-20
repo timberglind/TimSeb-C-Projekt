@@ -47,6 +47,28 @@ namespace Logic
             }
         }
 
+        public void omSpelad(String kategori, String namn, CheckedListBox avsnitt)
+        {
+            String path = Directory.GetCurrentDirectory() + @"\" + kategori + @"\" + namn + @".xml";
+
+            XmlDocument synkDokument = new XmlDocument();
+            synkDokument.Load(path);
+
+            int i = 0;
+
+            foreach (XmlNode xndNode in synkDokument.DocumentElement.SelectNodes("item"))
+            {
+                var titel = xndNode.SelectSingleNode("title");
+                var status = xndNode.SelectSingleNode("status");
+
+                if (status.InnerText.Equals("Lyssnat på."))
+                {
+                    avsnitt.SetItemChecked(i, true);
+                }
+                i++;
+            }
+    }
+
         public void hämtaAvsnitt(String kategori, String namn, CheckedListBox avsnitt)
         {
             String path = Directory.GetCurrentDirectory() + @"\" + kategori + @"\" + namn + @".xml";
@@ -63,7 +85,6 @@ namespace Logic
                 int.TryParse(synkDokument.SelectSingleNode("channel/interval").InnerText, out uppdatering);
                 if (senastSynkad.AddMilliseconds(uppdatering).CompareTo(DateTime.Now) < 0)
                 {
-                    lyssnat.kollaOmLyssnat(namn, kategori);
                     skapaPod(namn, url, kategori, uppdatering.ToString());
                     Console.WriteLine("Uppdaterad");
                 }
@@ -138,28 +159,6 @@ namespace Logic
                     var omAvsnitt = xndNode.SelectSingleNode("description");
                     textBox.Text = omAvsnitt.InnerText;
                 }
-            }
-        }
-
-        public void omSpelad(String kategori, String namn, CheckedListBox avsnitt)
-        {
-            String path = Directory.GetCurrentDirectory() + @"\" + kategori + @"\" + namn + @".xml";
-
-            XmlDocument synkDokument = new XmlDocument();
-            synkDokument.Load(path);
-
-            int i = 0;
-
-            foreach (XmlNode xndNode in synkDokument.DocumentElement.SelectNodes("item"))
-            {
-                var titel = xndNode.SelectSingleNode("title");
-                var status = xndNode.SelectSingleNode("status");
-
-                if (status.InnerText.Equals("Lyssnat på."))
-                {
-                    avsnitt.SetItemChecked(i, true);
-                }
-                i++;
             }
         }
 

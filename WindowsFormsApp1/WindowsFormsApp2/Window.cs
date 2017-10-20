@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
+using System.Xml;
 
 namespace WindowsFormsApp1
 {
@@ -19,6 +21,8 @@ namespace WindowsFormsApp1
         Validering validering = new Validering();
         public List<String> listaPod = new List<String>();
         List<String> listaUppdatering = new List<String>();
+       
+
 
         public List<String> Podcast
         {
@@ -278,6 +282,20 @@ namespace WindowsFormsApp1
 
                 }
             }
+        }
+
+        private void btnSpelaPod_Click(object sender, EventArgs e)
+        {
+            
+            string url;
+            podfeed.hämtaPodUrl(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt.SelectedItem.ToString(), out url);
+
+            Process.Start("wmplayer.exe", url);
+
+            podfeed.omSpelad(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt);
+
+
+
         }
     }
 }
