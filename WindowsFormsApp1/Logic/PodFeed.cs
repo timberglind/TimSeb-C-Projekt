@@ -188,11 +188,23 @@ namespace Logic
 
         public void ändraUppdateringPod(String kategori, String namn, ComboBox kombo)
         {
+            
+                var doc = new XmlDocument();
+                doc.Load(Directory.GetCurrentDirectory() + @"\" + kategori + @"\" + namn + @".xml");
+                var node = doc.SelectSingleNode(@"channel/interval");
+                node.InnerText = kombo.Text;
+                doc.Save(Directory.GetCurrentDirectory() + @"\" + kategori + @"\" + namn + @".xml");
+            
+        }
+
+        public void ändraUrlPod(String kategori, String namn, TextBox text)
+        {
+
             var doc = new XmlDocument();
-            doc.Load(Directory.GetCurrentDirectory());
-            var node = doc.SelectSingleNode(@"channel/interval");
-            node.InnerText = kombo.Text;
-            doc.Save(Directory.GetCurrentDirectory());
+            doc.Load(Directory.GetCurrentDirectory() + @"\" + kategori + @"\" + namn + @".xml");
+            var node = doc.SelectSingleNode(@"channel/url");
+            node.InnerText = text.Text;
+            doc.Save(Directory.GetCurrentDirectory() + @"\" + kategori + @"\" + namn + @".xml");
 
         }
 

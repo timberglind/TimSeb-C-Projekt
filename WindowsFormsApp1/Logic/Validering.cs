@@ -92,5 +92,31 @@ namespace Logic
                 return true;
             }
         }
+        public static bool KollaValdPodUppdatering(ListBox lista)
+        {
+            if (lista.Text == "")
+            {
+                MessageBox.Show("Välj en podcast att uppdatera uppdateringsintervallet på från podcastlistan");
+                lista.Focus();
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public static bool KollaValdPodUrlUppdatering(ListBox lista)
+        {
+            if (lista.Text == "")
+            {
+                MessageBox.Show("Välj en podcast att uppdatera URL på från podcastlistan");
+                lista.Focus();
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }
