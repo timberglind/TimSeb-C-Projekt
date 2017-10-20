@@ -263,8 +263,7 @@ namespace WindowsFormsApp1
                 }
             }
         }
-        //Funkar inte.. saknar metod för ändra Uppdaterings... ersätt ändraNamnPod med ändraUrlPod
-        //Just nu ändrar den namn till ingenting
+        //Funkar inte.. 
         private void btnÄndraPodUppdatering_Click(object sender, EventArgs e)
         {
             if(Validering.KollacomboBox(cbUppdatering, lbKategori))
@@ -275,13 +274,7 @@ namespace WindowsFormsApp1
                 }
                 else
                 {
-                    podfeed.ändraNamnPod(lbKategori.Text, lbPodcast.Text, txtNamn.Text, lbPodcast);
-                    lbKategori.Items.Clear();
-                    cbKategori.Items.Clear();
-                    lbPodcast.Items.Clear();
-                    clbAvsnitt.Items.Clear();
-                    tbOm.Clear();
-                    fyllListaKategori();
+                    podfeed.ändraUppdateringPod(lbKategori.Text, lbPodcast.Text, cbUppdatering);
 
                 }
             }

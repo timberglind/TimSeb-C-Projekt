@@ -155,7 +155,7 @@ namespace Logic
                 var titel = xndNode.SelectSingleNode("title");
                 var status = xndNode.SelectSingleNode("status");
 
-                if (status.InnerText.Equals("Lyssnar på."))
+                if (status.InnerText.Equals("Lyssnat på."))
                 {
                     avsnitt.SetItemChecked(i, true);
                 }
@@ -172,7 +172,7 @@ namespace Logic
 
         public void taBortKategori(String kategori)
         {
-            string path = Directory.GetCurrentDirectory() + @"\" + kategori;
+            String path = Directory.GetCurrentDirectory() + @"\" + kategori;
 
             Directory.Delete(path, true);
         }
@@ -183,14 +183,18 @@ namespace Logic
             String väg2 = Directory.GetCurrentDirectory() + @"\" + namn;
 
             Directory.Move(väg1, väg2);
+
+            Directory.GetCurrentDirectory();
         }
 
-        public void ändraNamnPod(String kategori, String namn, String nyttNamn, ListBox lista)
+        public void ändraUppdateringPod(String kategori, String namn, ComboBox kombo)
         {
-            String väg1 = Directory.GetCurrentDirectory() + @"\" + kategori + @"\" + namn + @".xml";
-            String väg2 = Directory.GetCurrentDirectory() + @"\" + kategori + @"\" + nyttNamn + @".xml";
+            var doc = new XmlDocument();
+            doc.Load(Directory.GetCurrentDirectory());
+            var node = doc.SelectSingleNode(@"channel/interval");
+            node.InnerText = kombo.Text;
+            doc.Save(Directory.GetCurrentDirectory());
 
-            File.Move(väg1, väg2);
         }
 
         public void ändraPodKat(String kategori, String nyKat, String namn, ComboBox kombo)
