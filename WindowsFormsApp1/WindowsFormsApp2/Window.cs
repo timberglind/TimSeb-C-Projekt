@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
 
 namespace WindowsFormsApp1
 {
@@ -47,7 +48,7 @@ namespace WindowsFormsApp1
         {
             try
             {
-                cbUppdatering.Items.Add("2000");
+                cbUppdatering.Items.Add("20");
                 cbUppdatering.Items.Add("10000");
                 cbUppdatering.Items.Add("60000");
             }
@@ -244,29 +245,24 @@ namespace WindowsFormsApp1
                 }
             }
         }
-        //ändrar annat än URL oxå, tar bort en pod och skapar en ny..
+        //Måste fixa så den uppdateras
         private void btnÄndraPodURL_Click(object sender, EventArgs e)
         {
-            if (Validering.kollaTextFält(txtURL, "URL") && Validering.kollaTextFält(txtNamn, "Namn") && Validering.KollacomboBox(cbKategori, lbKategori) && Validering.kollaUppdatering(cbUppdatering, lbKategori))
+            if (Validering.kollaTextFält(txtURL, "URL") && Validering.KollaValdPodUrlUppdatering(lbPodcast))
             {
-                if (lbPodcast.SelectedItem == null)
-                {
-                    MessageBox.Show("Välj en podcast från listan att ändra URL på.");
-                }
-                else
-                {
-                    podfeed.taBortPod(lbKategori.Text, lbPodcast.Text);
-                    podfeed.skapaPod(txtNamn.Text, txtURL.Text, cbKategori.SelectedIndex.ToString(), cbUppdatering.ToString());
-                    lbPodcast.Items.Clear();
-                    lbKategori.Items.Clear();
-                    fyllListaKategori();
-                }
+                podfeed.ändraUrlPod(lbKategori.Text, lbPodcast.Text, txtURL);
+                MessageBox.Show("URL uppdaterad.");
+            }
+            else
+            {
+                MessageBox.Show("Fyll i ny URL i URL fältet.");
             }
         }
-        //Funkar inte.. 
+    
+      
         private void btnÄndraPodUppdatering_Click(object sender, EventArgs e)
         {
-            if(Validering.KollacomboBox(cbUppdatering, lbKategori))
+            if(Validering.kollaUppdatering(cbUppdatering, lbKategori) && Validering.KollaValdPodUppdatering(lbPodcast))
             {
                 if (cbUppdatering.SelectedItem == null)
                 {
@@ -275,9 +271,17 @@ namespace WindowsFormsApp1
                 else
                 {
                     podfeed.ändraUppdateringPod(lbKategori.Text, lbPodcast.Text, cbUppdatering);
-
+                    MessageBox.Show("Uppdateringsintervallen uppdaterad.");
                 }
             }
+        }
+
+        private void btnSpelaPod_Click(object sender, EventArgs e)
+        {
+            string url;
+            podfeed.hämtaPodUrl(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt.SelectedItem.ToString(), out url);
+
+            Process.Start("wmplayer.exe", url);
         }
     }
 }
