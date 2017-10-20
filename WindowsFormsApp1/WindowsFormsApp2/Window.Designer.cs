@@ -227,6 +227,7 @@
             this.btnÄndraPodKategori.TabIndex = 20;
             this.btnÄndraPodKategori.Text = "Ändra Podcastens Kategori";
             this.btnÄndraPodKategori.UseVisualStyleBackColor = true;
+            this.btnÄndraPodKategori.Click += new System.EventHandler(this.btnÄndraPodKategori_Click);
             // 
             // btnÄndraPodURL
             // 
@@ -236,6 +237,7 @@
             this.btnÄndraPodURL.TabIndex = 21;
             this.btnÄndraPodURL.Text = "Ändra Podcastens URL";
             this.btnÄndraPodURL.UseVisualStyleBackColor = true;
+            this.btnÄndraPodURL.Click += new System.EventHandler(this.btnÄndraPodURL_Click);
             // 
             // btnÄndraPodUppdatering
             // 
@@ -245,6 +247,7 @@
             this.btnÄndraPodUppdatering.TabIndex = 22;
             this.btnÄndraPodUppdatering.Text = "Ändra Podcastens Uppdateringsintervall";
             this.btnÄndraPodUppdatering.UseVisualStyleBackColor = true;
+            this.btnÄndraPodUppdatering.Click += new System.EventHandler(this.btnÄndraPodUppdatering_Click);
             // 
             // btnÄndraKategori
             // 

@@ -69,7 +69,7 @@ namespace WindowsFormsApp1
                 cbKategori.Items.Add(fixadLängd);
             }
         }
-
+        //Fuckar ur om URL inte stämmer http://www.asdasd.com får felmeddelande men inte http://skaringermannheimer.libsyn.com/skaringerman
         private async void btnLäggTillPod_Click(object sender, EventArgs e)
         {
             await btnLäggTillPod_ClickAsync();
@@ -82,7 +82,7 @@ namespace WindowsFormsApp1
                 if (cbKategori.SelectedItem == null)
                 {
                     MessageBox.Show("Välj kategori från komboboxen");
-                    return;
+                    
                 }
                 else
                 {
@@ -99,7 +99,7 @@ namespace WindowsFormsApp1
 
         private void btnLäggTillKategori_Click_1(object sender, EventArgs e)
         {
-            if (Validering.kollaTextFält(txtLäggTillKategori, "Kategori"))
+            if (Validering.kollaTextFält(txtLäggTillKategori, "'Lägg till Kategori'"))
             {
                 kategori.nyMapp(txtLäggTillKategori.Text);
                 lbKategori.Items.Clear();
@@ -122,11 +122,11 @@ namespace WindowsFormsApp1
                 lbPodcast.Items.Add(fixadSplitt);
             }
         }
-        //knas
         private void lbKategori_MouseClick(object sender, EventArgs e)
         {
             if (lbKategori.SelectedItem != null)
             {
+                clbAvsnitt.Items.Clear();
                 lbPodcast.Items.Clear();
                 fyllListaPodcast(lbKategori.Text, lbPodcast);
             }
@@ -191,7 +191,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        //KNAS
+        //KNAS funkar bara en gång.
         private void btnÄndraKategori_Click(object sender, EventArgs e)
         {
             if (Validering.kollaTextFält(txtNamn, "Namn"))
@@ -220,6 +220,70 @@ namespace WindowsFormsApp1
             if (clbAvsnitt.SelectedItem != null)
             {
                 podfeed.hamtaOmAvsnitt(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt.SelectedItem.ToString(), tbOm);
+            }
+        }
+
+        private void btnÄndraPodKategori_Click(object sender, EventArgs e)
+        {
+            if (Validering.KollacomboBox(cbKategori, lbKategori))
+            {
+                if(lbPodcast.SelectedItem == null)
+                {
+                    MessageBox.Show("Välj en podcast från listan att ändra kategori på.");
+                    
+                }
+                else
+                {
+                    podfeed.ändraPodKat(lbKategori.Text, cbKategori.Text, lbPodcast.Text, cbKategori);
+                    lbKategori.Items.Clear();
+                    cbKategori.Items.Clear();
+                    lbPodcast.Items.Clear();
+                    clbAvsnitt.Items.Clear();
+                    tbOm.Clear();
+                    fyllListaKategori();
+                }
+            }
+        }
+        //ändrar annat än URL oxå, tar bort en pod och skapar en ny..
+        private void btnÄndraPodURL_Click(object sender, EventArgs e)
+        {
+            if (Validering.kollaTextFält(txtURL, "URL") && Validering.kollaTextFält(txtNamn, "Namn") && Validering.KollacomboBox(cbKategori, lbKategori) && Validering.kollaUppdatering(cbUppdatering, lbKategori))
+            {
+                if (lbPodcast.SelectedItem == null)
+                {
+                    MessageBox.Show("Välj en podcast från listan att ändra URL på.");
+                }
+                else
+                {
+                    podfeed.taBortPod(lbKategori.Text, lbPodcast.Text);
+                    podfeed.skapaPod(txtNamn.Text, txtURL.Text, cbKategori.SelectedIndex.ToString(), cbUppdatering.ToString());
+                    lbPodcast.Items.Clear();
+                    lbKategori.Items.Clear();
+                    fyllListaKategori();
+                }
+            }
+        }
+        //Funkar inte.. saknar metod för ändra Uppdaterings... ersätt ändraNamnPod med ändraUrlPod
+        //Just nu ändrar den namn till ingenting
+        private void btnÄndraPodUppdatering_Click(object sender, EventArgs e)
+        {
+            if(Validering.KollacomboBox(cbUppdatering, lbKategori))
+            {
+                if (cbUppdatering.SelectedItem == null)
+                {
+                    MessageBox.Show("Välj ny uppdateringsintervall från comboboxen.");
+                }
+                else
+                {
+                    podfeed.ändraNamnPod(lbKategori.Text, lbPodcast.Text, txtNamn.Text, lbPodcast);
+                    lbKategori.Items.Clear();
+                    cbKategori.Items.Clear();
+                    lbPodcast.Items.Clear();
+                    clbAvsnitt.Items.Clear();
+                    tbOm.Clear();
+                    fyllListaKategori();
+
+                }
             }
         }
     }

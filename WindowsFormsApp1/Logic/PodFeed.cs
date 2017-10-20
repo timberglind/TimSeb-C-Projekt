@@ -177,22 +177,6 @@ namespace Logic
             Directory.Delete(path, true);
         }
 
-        //public void fyllAvsnitt(ListBox lista)
-        //{
-        //    XmlDocument xm = new XmlDocument();
-        //    string list = "//title";
-
-        //    string path = @"c:\users\joaki\desktop\informatik\informatik b\projektet\mainwindow\data\dokument1.xml";
-
-        //    xm.Load(path);
-        //    XmlNodeList Xn = xm.SelectNodes(list);
-
-        //    foreach (XmlNode xNode in Xn)
-        //    {
-        //        lista.Items.Add(xNode.InnerText);
-        //    }
-        //}
-
         public void ändraKategori(String kategori, String namn, ListBox lista, ComboBox kombo)
         {
             String väg1 = Directory.GetCurrentDirectory() + @"\" + kategori;
