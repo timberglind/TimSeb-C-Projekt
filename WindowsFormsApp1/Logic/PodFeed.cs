@@ -85,7 +85,9 @@ namespace Logic
                 int.TryParse(synkDokument.SelectSingleNode("channel/interval").InnerText, out uppdatering);
                 if (senastSynkad.AddMilliseconds(uppdatering).CompareTo(DateTime.Now) < 0)
                 {
-                    skapaPod(namn, url, kategori, uppdatering.ToString());
+                    lyssnat.kollaOmLyssnat(namn, kategori);
+                    //skapaPod(namn, url, kategori, uppdatering.ToString());
+                    
                     Console.WriteLine("Uppdaterad");
                 }
             }

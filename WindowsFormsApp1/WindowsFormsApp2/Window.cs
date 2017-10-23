@@ -288,7 +288,7 @@ namespace WindowsFormsApp1
             podfeed.omSpelad(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt);
         }
 
-        
-    }
+
+   }
 }
 
