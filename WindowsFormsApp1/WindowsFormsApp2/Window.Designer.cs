@@ -314,7 +314,7 @@
             this.btnSpelaPod.TabIndex = 26;
             this.btnSpelaPod.Text = "Spela Podcast";
             this.btnSpelaPod.UseVisualStyleBackColor = true;
-            this.btnSpelaPod.Click += new System.EventHandler(this.btnSpelaPod_Click);
+            
             // 
             // clbAvsnitt
             // 

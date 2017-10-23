@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
 
 namespace WindowsFormsApp1
 {
@@ -283,21 +284,11 @@ namespace WindowsFormsApp1
             podfeed.hämtaPodUrl(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt.SelectedItem.ToString(), out url);
 
             Process.Start("wmplayer.exe", url);
-        }
-
-        private void btnSpelaPod_Click(object sender, EventArgs e)
-        {
-            
-            string url;
-            podfeed.hämtaPodUrl(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt.SelectedItem.ToString(), out url);
-
-            Process.Start("wmplayer.exe", url);
 
             podfeed.omSpelad(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt);
-
-
-
         }
+
+        
     }
 }
 
