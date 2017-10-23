@@ -86,7 +86,7 @@ namespace Logic
                 if (senastSynkad.AddMilliseconds(uppdatering).CompareTo(DateTime.Now) < 0)
                 {
                     lyssnat.kollaOmLyssnat(namn, kategori);
-                    //skapaPod(namn, url, kategori, uppdatering.ToString());
+                    skapaPod(namn, url, kategori, uppdatering.ToString());
                     
                     Console.WriteLine("Uppdaterad");
                 }
