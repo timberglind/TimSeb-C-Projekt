@@ -77,7 +77,6 @@
             this.txtLäggTillKategori.Name = "txtLäggTillKategori";
             this.txtLäggTillKategori.Size = new System.Drawing.Size(259, 20);
             this.txtLäggTillKategori.TabIndex = 2;
-            this.txtLäggTillKategori.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // lblUrl
             // 
@@ -128,10 +127,9 @@
             this.lblUppdatering.AutoSize = true;
             this.lblUppdatering.Location = new System.Drawing.Point(13, 136);
             this.lblUppdatering.Name = "lblUppdatering";
-            this.lblUppdatering.Size = new System.Drawing.Size(126, 13);
+            this.lblUppdatering.Size = new System.Drawing.Size(179, 13);
             this.lblUppdatering.TabIndex = 8;
-            this.lblUppdatering.Text = "Välj Uppdateringsintervall";
-            this.lblUppdatering.Click += new System.EventHandler(this.label5_Click);
+            this.lblUppdatering.Text = "Välj Uppdateringsintervall (sekunder)";
             // 
             // cbUppdatering
             // 
@@ -304,6 +302,7 @@
             this.clbAvsnitt.Name = "clbAvsnitt";
             this.clbAvsnitt.Size = new System.Drawing.Size(465, 394);
             this.clbAvsnitt.TabIndex = 29;
+            this.clbAvsnitt.MouseClick += new System.Windows.Forms.MouseEventHandler(this.clbAvsnitt_MouseClick);
             // 
             // Window
             // 
@@ -339,7 +338,6 @@
             this.Controls.Add(this.txtURL);
             this.Name = "Window";
             this.Text = "P0DC4ST3R 4PP3N";
-            this.Load += new System.EventHandler(this.Window_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

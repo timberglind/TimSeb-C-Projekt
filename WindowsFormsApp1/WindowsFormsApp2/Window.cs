@@ -16,63 +16,25 @@ namespace WindowsFormsApp1
     public partial class Window : Form
     {
         PodFeed podfeed = new PodFeed();
-        Kategori kategori = new Kategori();
+        FyllPå fyll = new FyllPå();
         Validering validering = new Validering();
-        public List<String> listaPod = new List<String>();
-        List<String> listaUppdatering = new List<String>();
+        
        
-
-
-        public List<String> Podcast
-        {
-            get
-            {
-                return listaPod;
-            }
-        }
 
         public Window()
         {
             try
             {
                 InitializeComponent();
-                listaPod = new List<String>();
-                fyllListaKategori();
-                fyllCbUppdatering();
+                fyll.fyllListaKategori(lbKategori, cbKategori);
+                fyll.fyllCbUppdatering(cbUppdatering);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
         }
-
-        public void fyllCbUppdatering()
-        {
-            try
-            {
-                cbUppdatering.Items.Add("20");
-                cbUppdatering.Items.Add("10000");
-                cbUppdatering.Items.Add("60000");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-        }
-
-        public void fyllListaKategori()
-        {
-            String[] kategori = Directory.GetDirectories(Directory.GetCurrentDirectory());
-            foreach (String kat in kategori)
-            {
-                String[] splitta = kat.Split('\\');
-                int längd = splitta.Length - 1;
-                String fixadLängd = splitta[längd];
-                lbKategori.Items.Add(fixadLängd);
-                cbKategori.Items.Add(fixadLängd);
-            }
-        }
-        //Fuckar ur om URL inte stämmer http://www.asdasd.com får felmeddelande men inte http://skaringermannheimer.libsyn.com/skaringerman
+        
         private async void btnLäggTillPod_Click(object sender, EventArgs e)
         {
             await btnLäggTillPod_ClickAsync();
@@ -85,7 +47,6 @@ namespace WindowsFormsApp1
                 if (cbKategori.SelectedItem == null)
                 {
                     MessageBox.Show("Välj kategori från komboboxen");
-                    
                 }
                 else
                 {
@@ -93,7 +54,8 @@ namespace WindowsFormsApp1
                     xmlPodFeed.skapaPod(txtNamn.Text, txtURL.Text, cbKategori.SelectedItem.ToString(), cbUppdatering.SelectedItem.ToString());
                     lbPodcast.Items.Clear();
                     lbKategori.Items.Clear();
-                    fyllListaKategori();
+                    cbKategori.Items.Clear();
+                    fyll.fyllListaKategori(lbKategori, cbKategori);
                     MessageBox.Show(txtNamn.Text + " har lagts till.");
                 }
             }
@@ -104,55 +66,23 @@ namespace WindowsFormsApp1
         {
             if (Validering.kollaTextFält(txtLäggTillKategori, "'Lägg till Kategori'"))
             {
-                kategori.nyMapp(txtLäggTillKategori.Text);
+                fyll.nyMapp(txtLäggTillKategori.Text);
                 lbKategori.Items.Clear();
                 cbKategori.Items.Clear();
-                fyllListaKategori();
+                fyll.fyllListaKategori(lbKategori, cbKategori);
                 MessageBox.Show("Kategorin: '" + txtLäggTillKategori.Text + "' har lagts till.");
                 txtLäggTillKategori.Clear();
             }
         }
 
-        public void fyllListaPodcast(String kategori, ListBox lista)
-        {
-            String[] podcast = Directory.GetFiles(kategori);
-            foreach (String pod in podcast)
-            {
-                String[] splitta = pod.Split('\\');
-                String splitta2 = splitta[splitta.Length - 1];
-                String[] fixadLängd = splitta2.Split('.');
-                String fixadSplitt = fixadLängd[0];
-                lbPodcast.Items.Add(fixadSplitt);
-            }
-        }
         private void lbKategori_MouseClick(object sender, EventArgs e)
         {
             if (lbKategori.SelectedItem != null)
             {
                 clbAvsnitt.Items.Clear();
                 lbPodcast.Items.Clear();
-                fyllListaPodcast(lbKategori.Text, lbPodcast);
+                fyll.fyllListaPodcast(lbKategori.Text, lbPodcast);
             }
-        }
-
-
-
-
-
-
-        private void Window_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btnTabortKategori_Click(object sender, EventArgs e)
@@ -163,7 +93,7 @@ namespace WindowsFormsApp1
                 podfeed.taBortKategori(lbKategori.Text);
                 cbKategori.Items.Clear();
                 lbKategori.Items.Clear();
-                fyllListaKategori();
+                fyll.fyllListaKategori(lbKategori, cbKategori);
                 clbAvsnitt.Items.Clear();
                 lbPodcast.Items.Clear();
                 MessageBox.Show("Kategorin är borttagen.");
@@ -189,12 +119,12 @@ namespace WindowsFormsApp1
                 clbAvsnitt.Items.Clear();
                 lbPodcast.Items.Clear();
                 tbOm.Clear();
-                fyllListaPodcast(lbKategori.Text, lbPodcast);
+                fyll.fyllListaPodcast(lbKategori.Text, lbPodcast);
                 MessageBox.Show("Poddcasten är borttagen.");
             }
         }
 
-        //KNAS funkar bara en gång.
+        
         private void btnÄndraKategori_Click(object sender, EventArgs e)
         {
             if (Validering.kollaTextFält(txtNamn, "Namn"))
@@ -211,7 +141,7 @@ namespace WindowsFormsApp1
                     clbAvsnitt.Items.Clear();
                     lbPodcast.Items.Clear();
                     tbOm.Clear();
-                    fyllListaKategori();
+                    fyll.fyllListaKategori(lbKategori, cbKategori);
                 }
             }
 
@@ -243,11 +173,11 @@ namespace WindowsFormsApp1
                     lbPodcast.Items.Clear();
                     clbAvsnitt.Items.Clear();
                     tbOm.Clear();
-                    fyllListaKategori();
+                    fyll.fyllListaKategori(lbKategori, cbKategori);
                 }
             }
         }
-        //Måste fixa så den uppdateras
+        
         private void btnÄndraPodURL_Click(object sender, EventArgs e)
         {
             if (Validering.kollaTextFält(txtURL, "URL") && Validering.KollaValdPodUrlUppdatering(lbPodcast))
@@ -284,7 +214,7 @@ namespace WindowsFormsApp1
             {
                 string url;
                 podfeed.hämtaPodUrl(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt.SelectedItem.ToString(), out url);
-
+                podfeed.ändraStatus(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt.SelectedItem.ToString());
                 Process.Start("wmplayer.exe", url);
 
                 podfeed.omSpelad(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt);
@@ -295,7 +225,6 @@ namespace WindowsFormsApp1
             }
         }
 
-
-   }
+    }
 }
 

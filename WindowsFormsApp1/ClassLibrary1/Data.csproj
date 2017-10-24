@@ -43,7 +43,6 @@
     <Compile Include="Abstrakt.cs" />
     <Compile Include="LäggTillPod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RedanLyssnat.cs" />
     <Compile Include="Rss.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
