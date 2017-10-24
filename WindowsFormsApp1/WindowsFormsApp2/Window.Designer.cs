@@ -54,7 +54,7 @@
             this.btnTabortPod = new System.Windows.Forms.Button();
             this.btnSpelaPod = new System.Windows.Forms.Button();
             this.tbOm = new System.Windows.Forms.TextBox();
-            this.lbAvsnitt = new System.Windows.Forms.ListBox();
+            this.clbAvsnitt = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
             // 
             // txtURL
@@ -297,20 +297,20 @@
             this.tbOm.Size = new System.Drawing.Size(465, 134);
             this.tbOm.TabIndex = 28;
             // 
-            // lbAvsnitt
+            // clbAvsnitt
             // 
-            this.lbAvsnitt.FormattingEnabled = true;
-            this.lbAvsnitt.Location = new System.Drawing.Point(646, 37);
-            this.lbAvsnitt.Name = "lbAvsnitt";
-            this.lbAvsnitt.Size = new System.Drawing.Size(465, 394);
-            this.lbAvsnitt.TabIndex = 29;
+            this.clbAvsnitt.FormattingEnabled = true;
+            this.clbAvsnitt.Location = new System.Drawing.Point(646, 37);
+            this.clbAvsnitt.Name = "clbAvsnitt";
+            this.clbAvsnitt.Size = new System.Drawing.Size(465, 394);
+            this.clbAvsnitt.TabIndex = 29;
             // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1123, 611);
-            this.Controls.Add(this.lbAvsnitt);
+            this.Controls.Add(this.clbAvsnitt);
             this.Controls.Add(this.tbOm);
             this.Controls.Add(this.btnSpelaPod);
             this.Controls.Add(this.btnTabortPod);
@@ -373,7 +373,7 @@
         private System.Windows.Forms.Button btnTabortPod;
         private System.Windows.Forms.Button btnSpelaPod;
         private System.Windows.Forms.TextBox tbOm;
-        private System.Windows.Forms.ListBox lbAvsnitt;
+        private System.Windows.Forms.CheckedListBox clbAvsnitt;
     }
 }
 

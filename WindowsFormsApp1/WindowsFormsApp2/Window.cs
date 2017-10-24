@@ -129,7 +129,7 @@ namespace WindowsFormsApp1
         {
             if (lbKategori.SelectedItem != null)
             {
-                lbAvsnitt.Items.Clear();
+                clbAvsnitt.Items.Clear();
                 lbPodcast.Items.Clear();
                 fyllListaPodcast(lbKategori.Text, lbPodcast);
             }
@@ -164,7 +164,7 @@ namespace WindowsFormsApp1
                 cbKategori.Items.Clear();
                 lbKategori.Items.Clear();
                 fyllListaKategori();
-                lbAvsnitt.Items.Clear();
+                clbAvsnitt.Items.Clear();
                 lbPodcast.Items.Clear();
                 MessageBox.Show("Kategorin är borttagen.");
             }
@@ -175,9 +175,9 @@ namespace WindowsFormsApp1
         {
             if (lbPodcast.SelectedItem != null)
             {
-                lbAvsnitt.Items.Clear();
-                podfeed.hämtaAvsnitt(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), lbAvsnitt);
-                podfeed.omSpelad(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), lbAvsnitt);
+                clbAvsnitt.Items.Clear();
+                podfeed.hämtaAvsnitt(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt);
+                podfeed.omSpelad(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt);
             }
         }
 
@@ -186,7 +186,7 @@ namespace WindowsFormsApp1
             if (Validering.KollaPodLista(lbPodcast))
             {
                 podfeed.taBortPod(lbKategori.Text, lbPodcast.Text);
-                lbAvsnitt.Items.Clear();
+                clbAvsnitt.Items.Clear();
                 lbPodcast.Items.Clear();
                 tbOm.Clear();
                 fyllListaPodcast(lbKategori.Text, lbPodcast);
@@ -208,7 +208,7 @@ namespace WindowsFormsApp1
                     podfeed.ändraKategori(lbKategori.Text, txtNamn.Text, lbKategori, cbKategori);
                     lbKategori.Items.Clear();
                     cbKategori.Items.Clear();
-                    lbAvsnitt.Items.Clear();
+                    clbAvsnitt.Items.Clear();
                     lbPodcast.Items.Clear();
                     tbOm.Clear();
                     fyllListaKategori();
@@ -220,9 +220,9 @@ namespace WindowsFormsApp1
         private void clbAvsnitt_MouseClick(object sender, MouseEventArgs e)
         {
 
-            if (lbAvsnitt.SelectedItem != null)
+            if (clbAvsnitt.SelectedItem != null)
             {
-                podfeed.hamtaOmAvsnitt(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), lbAvsnitt.SelectedItem.ToString(), tbOm);
+                podfeed.hamtaOmAvsnitt(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt.SelectedItem.ToString(), tbOm);
             }
         }
 
@@ -241,7 +241,7 @@ namespace WindowsFormsApp1
                     lbKategori.Items.Clear();
                     cbKategori.Items.Clear();
                     lbPodcast.Items.Clear();
-                    lbAvsnitt.Items.Clear();
+                    clbAvsnitt.Items.Clear();
                     tbOm.Clear();
                     fyllListaKategori();
                 }
@@ -283,11 +283,11 @@ namespace WindowsFormsApp1
             try
             {
                 string url;
-                podfeed.hämtaPodUrl(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), lbAvsnitt.SelectedItem.ToString(), out url);
+                podfeed.hämtaPodUrl(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt.SelectedItem.ToString(), out url);
 
                 Process.Start("wmplayer.exe", url);
 
-                podfeed.omSpelad(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), lbAvsnitt);
+                podfeed.omSpelad(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt);
             }
             catch (Exception)
             {
