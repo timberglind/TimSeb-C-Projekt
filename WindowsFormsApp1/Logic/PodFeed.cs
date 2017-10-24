@@ -47,7 +47,7 @@ namespace Logic
             }
         }
 
-        public void omSpelad(String kategori, String namn, CheckedListBox avsnitt)
+        public void omSpelad(String kategori, String namn, ListBox avsnitt)
         {
             String path = Directory.GetCurrentDirectory() + @"\" + kategori + @"\" + namn + @".xml";
 
@@ -63,13 +63,13 @@ namespace Logic
 
                 if (status.InnerText.Equals("Lyssnat på."))
                 {
-                    avsnitt.SetItemChecked(i, true);
+                    avsnitt.SetSelected(i, false);
                 }
                 i++;
             }
     }
 
-        public void hämtaAvsnitt(String kategori, String namn, CheckedListBox avsnitt)
+        public void hämtaAvsnitt(String kategori, String namn, ListBox avsnitt)
         {
             String path = Directory.GetCurrentDirectory() + @"\" + kategori + @"\" + namn + @".xml";
 
