@@ -280,12 +280,19 @@ namespace WindowsFormsApp1
 
         private void btnSpelaPod_Click(object sender, EventArgs e)
         {
-            string url;
-            podfeed.hämtaPodUrl(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt.SelectedItem.ToString(), out url);
+            try
+            {
+                string url;
+                podfeed.hämtaPodUrl(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt.SelectedItem.ToString(), out url);
 
-            Process.Start("wmplayer.exe", url);
+                Process.Start("wmplayer.exe", url);
 
-            podfeed.omSpelad(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt);
+                podfeed.omSpelad(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Välj ett avsnitt att lyssna på från avsnittlistan.");
+            }
         }
 
 

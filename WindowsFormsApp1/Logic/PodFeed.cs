@@ -69,7 +69,7 @@ namespace Logic
             }
     }
 
-        public void hämtaAvsnitt(String kategori, String namn, CheckedListBox avsnitt)
+        public void hämtaAvsnitt(String kategori, String namn, ListBox avsnitt)
         {
             String path = Directory.GetCurrentDirectory() + @"\" + kategori + @"\" + namn + @".xml";
 
