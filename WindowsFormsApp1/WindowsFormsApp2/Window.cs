@@ -77,7 +77,6 @@ namespace WindowsFormsApp1
                 fyll.nyMapp(txtLäggTillKategori.Text);
                 lbKategori.Items.Clear();
                 cbKategori.Items.Clear();
-                txtLäggTillKategori.Clear();
                 fyll.fyllListaKategori(lbKategori, cbKategori);
                 MessageBox.Show("Kategorin: '" + txtLäggTillKategori.Text + "' har lagts till.");
                 txtLäggTillKategori.Clear();
@@ -143,7 +142,8 @@ namespace WindowsFormsApp1
 
         private void btnÄndraKategori_Click(object sender, EventArgs e)
         {
-            if (Validering.kollaTextFält(txtNamn, "Namn"))
+            if (Validering.kollaTextFält(txtNamn, "Namn") && Validering.kollaSamma(txtNamn, cbKategori))
+                
             {
                 if (cbKategori.SelectedItem == null)
                 {

@@ -120,6 +120,19 @@ namespace Logic
             }
         }
 
-        
+        public static bool kollaSamma(TextBox textbox, ComboBox combo)
+        {
+            
+            if (combo.SelectedItem.ToString() == textbox.Text)
+            {
+                MessageBox.Show("Namnet finns redan");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
     }
 }
