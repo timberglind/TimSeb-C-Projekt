@@ -55,6 +55,7 @@
             this.btnSpelaPod = new System.Windows.Forms.Button();
             this.tbOm = new System.Windows.Forms.TextBox();
             this.clbAvsnitt = new System.Windows.Forms.CheckedListBox();
+            this.lbVälkommen = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // txtURL
@@ -304,11 +305,25 @@
             this.clbAvsnitt.TabIndex = 29;
             this.clbAvsnitt.MouseClick += new System.Windows.Forms.MouseEventHandler(this.clbAvsnitt_MouseClick);
             // 
+            // lbVälkommen
+            // 
+            this.lbVälkommen.BackColor = System.Drawing.Color.Blue;
+            this.lbVälkommen.Font = new System.Drawing.Font("MS Office Symbol Semibold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVälkommen.ForeColor = System.Drawing.Color.Yellow;
+            this.lbVälkommen.FormattingEnabled = true;
+            this.lbVälkommen.ItemHeight = 27;
+            this.lbVälkommen.Location = new System.Drawing.Point(73, 474);
+            this.lbVälkommen.Name = "lbVälkommen";
+            this.lbVälkommen.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbVälkommen.Size = new System.Drawing.Size(138, 112);
+            this.lbVälkommen.TabIndex = 30;
+            // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1123, 611);
+            this.Controls.Add(this.lbVälkommen);
             this.Controls.Add(this.clbAvsnitt);
             this.Controls.Add(this.tbOm);
             this.Controls.Add(this.btnSpelaPod);
@@ -372,6 +387,7 @@
         private System.Windows.Forms.Button btnSpelaPod;
         private System.Windows.Forms.TextBox tbOm;
         private System.Windows.Forms.CheckedListBox clbAvsnitt;
+        private System.Windows.Forms.ListBox lbVälkommen;
     }
 }
 

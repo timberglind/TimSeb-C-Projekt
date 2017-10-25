@@ -18,8 +18,9 @@ namespace WindowsFormsApp1
         PodFeed podfeed = new PodFeed();
         FyllPå fyll = new FyllPå();
         Validering validering = new Validering();
-        
-       
+        Linq linq = new Linq();
+
+
 
         public Window()
         {
@@ -28,13 +29,14 @@ namespace WindowsFormsApp1
                 InitializeComponent();
                 fyll.fyllListaKategori(lbKategori, cbKategori);
                 fyll.fyllCbUppdatering(cbUppdatering);
+                linq.LinqMetod(lbVälkommen);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
         }
-        
+
         private async void btnLäggTillPod_Click(object sender, EventArgs e)
         {
             await btnLäggTillPod_ClickAsync();
@@ -56,10 +58,11 @@ namespace WindowsFormsApp1
                     lbKategori.Items.Clear();
                     cbKategori.Items.Clear();
                     fyll.fyllListaKategori(lbKategori, cbKategori);
+                    await Task.Delay(1000);
                     MessageBox.Show(txtNamn.Text + " har lagts till.");
                 }
             }
-            await Task.Delay(1000);
+
         }
 
         private void btnLäggTillKategori_Click_1(object sender, EventArgs e)
@@ -101,14 +104,21 @@ namespace WindowsFormsApp1
 
         }
 
-        private void lbPodcast_MouseClick(object sender, MouseEventArgs e)
+        public async Task lbPodcast_MouseClick_ClickAsync()
+        {
+            await lbPodcast_MouseClick_ClickAsync();
+        }
+
+        private async void lbPodcast_MouseClick(object sender, MouseEventArgs e)
         {
             if (lbPodcast.SelectedItem != null)
             {
                 clbAvsnitt.Items.Clear();
                 podfeed.hämtaAvsnitt(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt);
                 podfeed.omSpelad(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt);
+                await Task.Delay(1000);
             }
+
         }
 
         private void btnTabortPod_Click(object sender, EventArgs e)
@@ -124,7 +134,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        
+
         private void btnÄndraKategori_Click(object sender, EventArgs e)
         {
             if (Validering.kollaTextFält(txtNamn, "Namn"))
@@ -158,12 +168,12 @@ namespace WindowsFormsApp1
 
         private void btnÄndraPodKategori_Click(object sender, EventArgs e)
         {
-            if (Validering.KollacomboBox(cbKategori, lbKategori))
+            if (Validering.KollacomboBox(cbKategori, lbKategori) && lbKategori.Items.Cast<string>().Any(x => x == txtNamn.Text))
             {
-                if(lbPodcast.SelectedItem == null)
+                if (lbPodcast.SelectedItem == null)
                 {
                     MessageBox.Show("Välj en podcast från listan att ändra kategori på.");
-                    
+
                 }
                 else
                 {
@@ -177,7 +187,7 @@ namespace WindowsFormsApp1
                 }
             }
         }
-        
+
         private void btnÄndraPodURL_Click(object sender, EventArgs e)
         {
             if (Validering.kollaTextFält(txtURL, "URL") && Validering.KollaValdPodUrlUppdatering(lbPodcast))
@@ -190,11 +200,11 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Fyll i ny URL i URL fältet.");
             }
         }
-    
-      
+
+
         private void btnÄndraPodUppdatering_Click(object sender, EventArgs e)
         {
-            if(Validering.kollaUppdatering(cbUppdatering, lbKategori) && Validering.KollaValdPodUppdatering(lbPodcast))
+            if (Validering.kollaUppdatering(cbUppdatering, lbKategori) && Validering.KollaValdPodUppdatering(lbPodcast))
             {
                 if (cbUppdatering.SelectedItem == null)
                 {
@@ -224,7 +234,7 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Välj ett avsnitt att lyssna på från avsnittlistan.");
             }
         }
-
+        
     }
 }
 

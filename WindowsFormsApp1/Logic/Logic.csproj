@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Linq.cs" />
     <Compile Include="Validering.cs" />
     <Compile Include="FyllPå.cs" />
     <Compile Include="PodFeed.cs" />
