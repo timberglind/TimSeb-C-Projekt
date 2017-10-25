@@ -122,6 +122,7 @@
             this.cbKategori.Name = "cbKategori";
             this.cbKategori.Size = new System.Drawing.Size(259, 21);
             this.cbKategori.TabIndex = 7;
+            
             // 
             // lblUppdatering
             // 

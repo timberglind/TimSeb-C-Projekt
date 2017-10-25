@@ -57,9 +57,14 @@ namespace WindowsFormsApp1
                     lbPodcast.Items.Clear();
                     lbKategori.Items.Clear();
                     cbKategori.Items.Clear();
+                    MessageBox.Show(txtNamn.Text + " har lagts till.");
+                    txtNamn.Clear();
+                    txtURL.Clear();
+                    cbKategori.ResetText();
+                    cbUppdatering.ResetText();
                     fyll.fyllListaKategori(lbKategori, cbKategori);
                     await Task.Delay(1000);
-                    MessageBox.Show(txtNamn.Text + " har lagts till.");
+                    
                 }
             }
 
@@ -72,6 +77,7 @@ namespace WindowsFormsApp1
                 fyll.nyMapp(txtLäggTillKategori.Text);
                 lbKategori.Items.Clear();
                 cbKategori.Items.Clear();
+                txtLäggTillKategori.Clear();
                 fyll.fyllListaKategori(lbKategori, cbKategori);
                 MessageBox.Show("Kategorin: '" + txtLäggTillKategori.Text + "' har lagts till.");
                 txtLäggTillKategori.Clear();
@@ -145,11 +151,13 @@ namespace WindowsFormsApp1
                 }
                 else
                 {
-                    podfeed.ändraKategori(lbKategori.Text, txtNamn.Text, lbKategori, cbKategori);
+                    podfeed.ändraKategori(cbKategori.Text, txtNamn.Text, lbKategori, cbKategori);
                     lbKategori.Items.Clear();
                     cbKategori.Items.Clear();
+                    cbKategori.ResetText();
                     clbAvsnitt.Items.Clear();
                     lbPodcast.Items.Clear();
+                    txtNamn.Clear();
                     tbOm.Clear();
                     fyll.fyllListaKategori(lbKategori, cbKategori);
                 }
@@ -234,7 +242,7 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Välj ett avsnitt att lyssna på från avsnittlistan.");
             }
         }
-        
+
     }
 }
 
