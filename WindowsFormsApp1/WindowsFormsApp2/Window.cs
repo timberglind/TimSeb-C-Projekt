@@ -45,11 +45,15 @@ namespace WindowsFormsApp1
 
         public async Task btnLäggTillPod_ClickAsync()
         {
-            if (Validering.kollaTextFält(txtURL, "URL") && Validering.kollaTextFält(txtNamn, "Namn") && Validering.KollaUrl(txtURL.Text))
+            if (Validering.kollaTextFält(txtURL, "URL") && Validering.kollaTextFält(txtNamn, "Namn") && Validering.KollaUrl(txtURL.Text) && Validering.kollaSamma(txtNamn, lbPodcast))
             {
                 if (cbKategori.SelectedItem == null)
                 {
-                    MessageBox.Show("Välj kategori från komboboxen");
+                    MessageBox.Show("Välj kategori från komboboxen.");
+                }
+                if(cbUppdatering.SelectedItem == null)
+                {
+                    MessageBox.Show("Välj uppdateringsintervall från komboboxen.");
                 }
                 else
                 {
