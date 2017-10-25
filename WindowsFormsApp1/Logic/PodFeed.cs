@@ -90,39 +90,6 @@ namespace Logic
             }
         }
 
-        public void hämtaAvsnitt(String kategori, String namn, ListBox avsnitt)
-        {
-            String path = Directory.GetCurrentDirectory() + @"\" + kategori + @"\" + namn + @".xml";
-
-            XmlDocument synkDokument = new XmlDocument();
-            synkDokument.Load(path);
-
-            try
-            {
-                var url = synkDokument.SelectSingleNode("channel/url").InnerText;
-                int uppdatering;
-                DateTime senastSynkad;
-                DateTime.TryParse(synkDokument.SelectSingleNode("channel/lastSync").InnerText, out senastSynkad);
-                int.TryParse(synkDokument.SelectSingleNode("channel/interval").InnerText, out uppdatering);
-                if (senastSynkad.AddSeconds(uppdatering).CompareTo(DateTime.Now) < 0)
-                {
-                    skapaPod(namn, url, kategori, uppdatering.ToString());
-                    Console.WriteLine("Uppdaterad");
-                }
-            }
-
-            catch (Exception)
-            {
-                MessageBox.Show("Uppdateringen knasade.");
-            }
-
-            foreach (XmlNode xndNode in synkDokument.DocumentElement.SelectNodes("item"))
-            {
-                var titel = xndNode.SelectSingleNode("title");
-                avsnitt.Items.Add(titel.InnerText);
-            }
-        }
-
 
         public void hamtaOmAvsnitt(string kategori, string namn, string valtAvsnitt, TextBox textBox)
         {

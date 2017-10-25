@@ -19,7 +19,7 @@ namespace WindowsFormsApp1
         FyllPå fyll = new FyllPå();
         Validering validering = new Validering();
         Linq linq = new Linq();
-
+        Virtual2 virt = new Virtual2();
 
 
         public Window()
@@ -30,6 +30,7 @@ namespace WindowsFormsApp1
                 fyll.fyllListaKategori(lbKategori, cbKategori);
                 fyll.fyllCbUppdatering(cbUppdatering);
                 linq.LinqMetod(lbVälkommen);
+                virt.braDag(tbBraDag);
             }
             catch (Exception e)
             {
@@ -119,7 +120,7 @@ namespace WindowsFormsApp1
             if (lbPodcast.SelectedItem != null)
             {
                 clbAvsnitt.Items.Clear();
-                podfeed.hämtaAvsnitt(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt);
+                fyll.fyllListaAvsnitt(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt);
                 podfeed.omSpelad(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt);
                 await Task.Delay(1000);
             }
