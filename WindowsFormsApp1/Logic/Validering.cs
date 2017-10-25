@@ -134,5 +134,18 @@ namespace Logic
             }
         }
 
+        public static bool kollaSamma(TextBox textbox, ListBox lista)
+        {
+            if (lista.Items.Contains(textbox.Text))
+            {
+                MessageBox.Show("Kategorin finns redan");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
     }
 }

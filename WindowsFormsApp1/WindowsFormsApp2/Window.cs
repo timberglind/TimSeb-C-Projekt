@@ -72,7 +72,7 @@ namespace WindowsFormsApp1
 
         private void btnLäggTillKategori_Click_1(object sender, EventArgs e)
         {
-            if (Validering.kollaTextFält(txtLäggTillKategori, "'Lägg till Kategori'"))
+            if (Validering.kollaTextFält(txtLäggTillKategori, "'Lägg till Kategori'") && Validering.kollaSamma(txtLäggTillKategori, lbKategori))
             {
                 fyll.nyMapp(txtLäggTillKategori.Text);
                 lbKategori.Items.Clear();
