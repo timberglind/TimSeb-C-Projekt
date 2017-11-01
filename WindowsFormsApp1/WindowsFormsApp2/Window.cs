@@ -17,7 +17,6 @@ namespace WindowsFormsApp1
     {
         PodFeed podfeed = new PodFeed();
         FyllPå fyll = new FyllPå();
-        Validering validering = new Validering();
         Linq linq = new Linq();
 
 

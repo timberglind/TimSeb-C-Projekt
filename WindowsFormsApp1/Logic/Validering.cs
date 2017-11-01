@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Logic
 {
-    public class Validering
+    public static class Validering
     {
 
         public static bool kollaTextFält(TextBox fält, String label)
