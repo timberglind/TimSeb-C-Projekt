@@ -18,7 +18,7 @@ namespace WindowsFormsApp1
         PodFeed podfeed = new PodFeed();
         FyllPå fyll = new FyllPå();
         Linq linq = new Linq();
-
+        Virtual2 virt = new Virtual2();
 
 
         public Window()
@@ -29,6 +29,7 @@ namespace WindowsFormsApp1
                 fyll.fyllListaKategori(lbKategori, cbKategori);
                 fyll.fyllCbUppdatering(cbUppdatering);
                 linq.LinqMetod(lbVälkommen);
+                virt.braDag(tbBraDag);
             }
             catch (Exception e)
             {
@@ -43,11 +44,15 @@ namespace WindowsFormsApp1
 
         public async Task btnLäggTillPod_ClickAsync()
         {
-            if (Validering.kollaTextFält(txtURL, "URL") && Validering.kollaTextFält(txtNamn, "Namn") && Validering.KollaUrl(txtURL.Text))
+            if (Validering.kollaTextFält(txtURL, "URL") && Validering.kollaTextFält(txtNamn, "Namn") && Validering.KollaUrl(txtURL.Text) && Validering.kollaSamma(txtNamn, lbPodcast))
             {
                 if (cbKategori.SelectedItem == null)
                 {
-                    MessageBox.Show("Välj kategori från komboboxen");
+                    MessageBox.Show("Välj kategori från komboboxen.");
+                }
+                if(cbUppdatering.SelectedItem == null)
+                {
+                    MessageBox.Show("Välj uppdateringsintervall från komboboxen.");
                 }
                 else
                 {
@@ -118,7 +123,7 @@ namespace WindowsFormsApp1
             if (lbPodcast.SelectedItem != null)
             {
                 clbAvsnitt.Items.Clear();
-                podfeed.hämtaAvsnitt(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt);
+                fyll.fyllListaAvsnitt(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt);
                 podfeed.omSpelad(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt);
                 await Task.Delay(1000);
             }

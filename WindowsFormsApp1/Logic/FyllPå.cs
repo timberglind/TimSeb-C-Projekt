@@ -12,7 +12,7 @@ namespace Logic
     public class FyllPå
     {
         List<FyllPå> kategoriLista = new List<FyllPå>();
-
+        PodFeed podfeed = new PodFeed();
         public bool nyMapp(string category)
         {
             string folderName = category;
@@ -28,6 +28,8 @@ namespace Logic
                 combo.Items.Add("5");
                 combo.Items.Add("10");
                 combo.Items.Add("30");
+                combo.Items.Add("60");
+                combo.Items.Add("1440");
             }
             catch (Exception e)
             {
@@ -58,6 +60,39 @@ namespace Logic
                 String[] fixadLängd = splitta2.Split('.');
                 String fixadSplitt = fixadLängd[0];
                 lista.Items.Add(fixadSplitt);
+            }
+        }
+
+        public void fyllListaAvsnitt(String kategori, String namn, ListBox avsnitt)
+        {
+            String path = Directory.GetCurrentDirectory() + @"\" + kategori + @"\" + namn + @".xml";
+
+            XmlDocument synkDokument = new XmlDocument();
+            synkDokument.Load(path);
+
+            try
+            {
+                var url = synkDokument.SelectSingleNode("channel/url").InnerText;
+                int uppdatering;
+                DateTime senastSynkad;
+                DateTime.TryParse(synkDokument.SelectSingleNode("channel/lastSync").InnerText, out senastSynkad);
+                int.TryParse(synkDokument.SelectSingleNode("channel/interval").InnerText, out uppdatering);
+                if (senastSynkad.AddMinutes(uppdatering).CompareTo(DateTime.Now) < 0)
+                {
+                    podfeed.skapaPod(namn, url, kategori, uppdatering.ToString());
+                    Console.WriteLine("Uppdaterad");
+                }
+            }
+
+            catch (Exception)
+            {
+                MessageBox.Show("Uppdateringen knasade.");
+            }
+
+            foreach (XmlNode xndNode in synkDokument.DocumentElement.SelectNodes("item"))
+            {
+                var titel = xndNode.SelectSingleNode("title");
+                avsnitt.Items.Add(titel.InnerText);
             }
         }
     }

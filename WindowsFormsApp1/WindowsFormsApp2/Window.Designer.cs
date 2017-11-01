@@ -56,6 +56,7 @@
             this.tbOm = new System.Windows.Forms.TextBox();
             this.clbAvsnitt = new System.Windows.Forms.CheckedListBox();
             this.lbVälkommen = new System.Windows.Forms.ListBox();
+            this.tbBraDag = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtURL
@@ -122,16 +123,15 @@
             this.cbKategori.Name = "cbKategori";
             this.cbKategori.Size = new System.Drawing.Size(259, 21);
             this.cbKategori.TabIndex = 7;
-            
             // 
             // lblUppdatering
             // 
             this.lblUppdatering.AutoSize = true;
             this.lblUppdatering.Location = new System.Drawing.Point(13, 136);
             this.lblUppdatering.Name = "lblUppdatering";
-            this.lblUppdatering.Size = new System.Drawing.Size(179, 13);
+            this.lblUppdatering.Size = new System.Drawing.Size(169, 13);
             this.lblUppdatering.TabIndex = 8;
-            this.lblUppdatering.Text = "Välj Uppdateringsintervall (sekunder)";
+            this.lblUppdatering.Text = "Välj Uppdateringsintervall (minuter)";
             // 
             // cbUppdatering
             // 
@@ -313,17 +313,31 @@
             this.lbVälkommen.ForeColor = System.Drawing.Color.Yellow;
             this.lbVälkommen.FormattingEnabled = true;
             this.lbVälkommen.ItemHeight = 27;
-            this.lbVälkommen.Location = new System.Drawing.Point(73, 474);
+            this.lbVälkommen.Location = new System.Drawing.Point(16, 465);
             this.lbVälkommen.Name = "lbVälkommen";
             this.lbVälkommen.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.lbVälkommen.Size = new System.Drawing.Size(138, 112);
             this.lbVälkommen.TabIndex = 30;
+            // 
+            // tbBraDag
+            // 
+            this.tbBraDag.BackColor = System.Drawing.Color.Fuchsia;
+            this.tbBraDag.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbBraDag.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tbBraDag.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbBraDag.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.tbBraDag.Location = new System.Drawing.Point(160, 511);
+            this.tbBraDag.Name = "tbBraDag";
+            this.tbBraDag.ReadOnly = true;
+            this.tbBraDag.Size = new System.Drawing.Size(138, 19);
+            this.tbBraDag.TabIndex = 31;
             // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1123, 611);
+            this.Controls.Add(this.tbBraDag);
             this.Controls.Add(this.lbVälkommen);
             this.Controls.Add(this.clbAvsnitt);
             this.Controls.Add(this.tbOm);
@@ -389,6 +403,7 @@
         private System.Windows.Forms.TextBox tbOm;
         private System.Windows.Forms.CheckedListBox clbAvsnitt;
         private System.Windows.Forms.ListBox lbVälkommen;
+        private System.Windows.Forms.TextBox tbBraDag;
     }
 }
 

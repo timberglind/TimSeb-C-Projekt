@@ -14,15 +14,24 @@ namespace Logic
 
         public static bool kollaTextFält(TextBox fält, String label)
         {
-            if (fält.Text == "")
+            try
             {
-                MessageBox.Show("Du måste fylla i fältet " + label);
-                fält.Focus();
-                return false;
+                if (fält.Text == "")
+                {
+                    MessageBox.Show("Du måste fylla i fältet " + label);
+                    fält.Focus();
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
-            else
+            catch(Exception)
             {
-                return true;
+                
+                return false;
+                
             }
         }
 
@@ -138,7 +147,7 @@ namespace Logic
         {
             if (lista.Items.Contains(textbox.Text))
             {
-                MessageBox.Show("Kategorin finns redan");
+                MessageBox.Show("Finns redan");
                 return false;
             }
             else
