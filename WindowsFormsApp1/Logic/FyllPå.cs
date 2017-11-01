@@ -11,7 +11,6 @@ namespace Logic
 {
     public class FyllPå
     {
-        List<FyllPå> kategoriLista = new List<FyllPå>();
         PodFeed podfeed = new PodFeed();
         public bool nyMapp(string category)
         {

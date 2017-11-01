@@ -71,7 +71,6 @@ namespace WindowsFormsApp1
                     
                 }
             }
-
         }
 
         private void btnLäggTillKategori_Click_1(object sender, EventArgs e)
@@ -110,7 +109,6 @@ namespace WindowsFormsApp1
                 lbPodcast.Items.Clear();
                 MessageBox.Show("Kategorin är borttagen.");
             }
-
         }
 
         public async Task lbPodcast_MouseClick_ClickAsync()
@@ -127,7 +125,6 @@ namespace WindowsFormsApp1
                 podfeed.omSpelad(lbKategori.SelectedItem.ToString(), lbPodcast.SelectedItem.ToString(), clbAvsnitt);
                 await Task.Delay(1000);
             }
-
         }
 
         private void btnTabortPod_Click(object sender, EventArgs e)
@@ -166,7 +163,6 @@ namespace WindowsFormsApp1
                     fyll.fyllListaKategori(lbKategori, cbKategori);
                 }
             }
-
         }
 
         private void clbAvsnitt_MouseClick(object sender, MouseEventArgs e)
@@ -246,7 +242,6 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Välj ett avsnitt att lyssna på från avsnittlistan.");
             }
         }
-
     }
 }
 

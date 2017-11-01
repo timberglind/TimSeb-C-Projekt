@@ -11,10 +11,10 @@ namespace Data
     {
         internal string xml = "";
     }
-    public class Rss : Abstrakt
+    class Rss : Abstrakt
     {
 
-        public override XmlDocument fetchDocument(string urlString)
+        public override XmlDocument läggIhopDokument(string urlString)
         {
             InternKlass iKlass = new InternKlass();
             var xml = iKlass.xml;

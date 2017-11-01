@@ -14,7 +14,6 @@ namespace Logic
     {
         LäggTillPod newPod = new LäggTillPod();
         
-
         public void skapaPod(String namn, String url, String kategori, String uppdatering)
         {
             LäggTillPod nyPod = new LäggTillPod();
@@ -90,7 +89,6 @@ namespace Logic
             }
         }
 
-
         public void hamtaOmAvsnitt(string kategori, string namn, string valtAvsnitt, TextBox textBox)
         {
             string path = Directory.GetCurrentDirectory() + @"\" + kategori + @"\" + namn + @".xml";
@@ -112,14 +110,12 @@ namespace Logic
         public void taBortPod(String kategori, String namn)
         {
             String path = Directory.GetCurrentDirectory() + @"\" + kategori + @"\" + namn + @".xml";
-
             File.Delete(path);
         }
 
         public void taBortKategori(String kategori)
         {
             String path = Directory.GetCurrentDirectory() + @"\" + kategori;
-
             Directory.Delete(path, true);
         }
 
@@ -129,7 +125,6 @@ namespace Logic
             String väg2 = Directory.GetCurrentDirectory() + @"\" + namn;
 
             Directory.Move(väg1, väg2);
-
             Directory.GetCurrentDirectory();
         }
 

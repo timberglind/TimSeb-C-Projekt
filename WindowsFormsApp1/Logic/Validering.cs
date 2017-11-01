@@ -35,7 +35,6 @@ namespace Logic
             }
         }
 
-
         public static bool KollaUrl(String url)
         {
             try

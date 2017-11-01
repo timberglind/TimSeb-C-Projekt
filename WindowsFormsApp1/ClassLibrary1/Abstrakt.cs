@@ -7,8 +7,8 @@ using System.Xml;
 
 namespace Data
 {
-    public abstract class Abstrakt
+    abstract class Abstrakt
     {
-        public abstract XmlDocument fetchDocument(string urlString);
+        public abstract XmlDocument läggIhopDokument(string urlString);
     }
 }

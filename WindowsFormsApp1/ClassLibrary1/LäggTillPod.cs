@@ -14,7 +14,7 @@ namespace Data
         public void läggTillPod(String namn, String url, String kategori, String uppdatering)
         {
             Rss varRss = new Rss();
-            XmlDocument dokument = varRss.fetchDocument(url);
+            XmlDocument dokument = varRss.läggIhopDokument(url);
             String path = Directory.GetCurrentDirectory() + @"\" + kategori + @"\" + namn + @".xml";
            
             int i = 0;

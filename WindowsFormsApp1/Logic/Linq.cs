@@ -14,10 +14,8 @@ namespace Logic
             {
                 string[] fleraOrd = { "Hej", "Då", "Välkommen", "Finaste", "Användare" };
 
-                
                 var merÄn5Bokstäver = from ord in fleraOrd where ord.Length >= 5 select ord;
 
-                
                 foreach (var ord in merÄn5Bokstäver)
                 {
                     list.Items.Add(ord);
